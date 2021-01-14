@@ -20,6 +20,7 @@ import { NbRadioModule } from '@nebular/theme';
 import { NbSelectModule } from '@nebular/theme';
 import { NbDatepickerModule } from '@nebular/theme';
 import { NbToggleModule } from '@nebular/theme';
+import { NbTabsetModule } from '@nebular/theme';
 
 import { GuestProfileComponent } from './guest-profile/guest-profile.component';
 
@@ -48,8 +49,8 @@ import { GuestProfileComponent } from './guest-profile/guest-profile.component';
     NbRadioModule,
     NbSelectModule,
     NbDatepickerModule.forRoot(),
-    NbToggleModule
-
+    NbToggleModule,
+    NbTabsetModule
   ],
   providers: [
     NbLayoutModule,
@@ -62,7 +63,8 @@ import { GuestProfileComponent } from './guest-profile/guest-profile.component';
     NbRadioModule,
     NbSelectModule,
     NbDatepickerModule,
-    NbToggleModule
+    NbToggleModule,
+    NbTabsetModule
   ],
   bootstrap: [AppComponent]
 })
