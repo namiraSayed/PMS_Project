@@ -1,0 +1,134 @@
+<nb-layout>
+  <nb-layout-header>PMS</nb-layout-header>
+
+  <nb-layout-column>
+    <div class="guest-profile">
+      <nb-accordion multi>
+        <nb-accordion-item expanded>
+          <nb-accordion-item-header>
+            Guest Profile
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <form [formGroup]="guestProfile" (submit)="onSubmitGuest()">
+              <div class="form-group row">
+                <label for="inputEmail1" class="label col-sm-1 col-form-label">Name: </label>
+                <div class="col-sm-2">
+                    <nb-select fullWidth placeholder="Select Salutation"  formControlName="Salutation" [(selected)]="selectedItem">
+                        <nb-option value="Mr.">Mr.</nb-option>
+                        <nb-option value="Ms.">Ms.</nb-option>
+                        <nb-option value="Mrs.">Mrs.</nb-option>
+                      </nb-select>
+                </div>
+                <div class="col-sm-3">
+                  <input type="text" nbInput  formControlName="firstName" fullWidth placeholder="First Name">
+                </div>
+                <div class="col-sm-3">
+                  <input type="text" nbInput fullWidth  formControlName="middleName" placeholder="Middle Name">
+                </div>
+                <div class="col-sm-3">
+                  <input type="text" nbInput fullWidth  formControlName="lastName" placeholder="Last Name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail1" class="label col-sm-1 col-form-label">Id Type: </label>
+                <div class="col-sm-3">
+                    <nb-select fullWidth  formControlName="IdType" placeholder="Select Id Type" [(selected)]="selectedItem1">
+                        <nb-option value="Passport">Passport</nb-option>
+                        <nb-option value="Pan Card">Pan Card</nb-option>
+                        <nb-option value="Aadhar Card">Aadhar Card</nb-option>
+                      </nb-select>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text"  formControlName="IdNumber" nbInput fullWidth placeholder="Id Number">
+                </div>
+                <div class="col-sm-2">
+                  <input type="file"  formControlName="IdImage" (change)="onselect($event)" multiple>
+                  <div *ngIf="!display" class="display-image">
+                    <!-- <img  *ngFor='let url of urls' [src]="url" height="100"> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="inputEmail1" class="label col-sm-1 col-form-label">D.O.B: </label>
+                <div class="col-sm-2">
+                    <input nbInput  formControlName="dob" fullWidth [nbDatepicker]="datepicker">
+                    <nb-datepicker #datepicker></nb-datepicker>
+                </div>
+                <div class="col-sm-2 mr-5">
+                  <input type="text"  formControlName="age" nbInput fullWidth placeholder="Age">
+                </div>
+
+
+                <label for="inputEmail1" class="label col-sm-1 col-form-label">Gender : </label>
+                <div class="col-sm-2">
+                  <!-- <input type="text" nbInput fullWidth placeholder="gender"> -->
+                  <nb-radio-group  formControlName="gender" >
+                    <nb-radio value="male">Male</nb-radio>
+                    <nb-radio value="Female">Female</nb-radio>
+                  </nb-radio-group>
+                </div>
+                <label for="inputEmail1" class="label col-sm-1 col-form-label">Civil Status : </label>
+                <div class="col-sm-2">
+                    <nb-select fullWidth  formControlName="civilStatus" placeholder="Select Civil Status" [(selected)]="selectedItem3">
+                        <nb-option value="Single">Single</nb-option>
+                        <nb-option value="Married">Married</nb-option>
+                        <nb-option value="Divorced">Divorced</nb-option>
+                        <nb-option value="Widowed">Widowed</nb-option>
+                      </nb-select>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="inputEmail1" class="label col-sm-1 col-form-label">Mobile No. : </label>
+                <div class="col-sm-5">
+                  <input type="text" formControlName="mobNo"  nbInput fullWidth placeholder="Mobile Number">
+                </div>
+                <label for="inputEmail1" class="label col-sm-1 col-form-label">Nationality : </label>
+                <div class="col-sm-5">
+                  <input type="text" formControlName="nationality"  nbInput fullWidth placeholder="Enter Nationality">
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="inputEmail1" class="label col-sm-1 col-form-label">Remark : </label>
+                <div class="col-sm-5">
+                  <input type="text" formControlName="remark" nbInput fullWidth placeholder="Remark">
+                </div>
+                <label for="inputEmail1" class="label col-sm-1 col-form-label">Status : </label>
+                <div class="col-sm-5">
+                    <nb-toggle  formControlName="status" status="primary"></nb-toggle>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <div class=" col-sm-9">
+                  <button type="submit" nbButton status="primary">Save</button>
+                </div>
+              </div>
+            </form>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+
+        <nb-accordion-item>
+          <nb-accordion-item-header>
+            Preferences
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+
+            Preferences Data
+            A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
+            Originally, nebula was a name for any diffuse astronomical object,
+            including galaxies beyond the Milky Way.
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+      </nb-accordion>
+
+    </div>
+  </nb-layout-column>
+
+  <nb-layout-footer>Contact us</nb-layout-footer>
+</nb-layout>

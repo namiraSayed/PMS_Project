@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, Validators } from '@angular/forms';
-import { Router } from "@angular/router";
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { LoginService } from '../app-services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,20 +10,38 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  user= {
-    email: '',
-    password: ''
-  }
+  submitted = false;
 
-  savelogin() {
-    console.log(this.user, "user");
-    this.router.navigate(['homepage']);
-  }
+
+  loginForm = this.fb.group({
+    userId: ['', Validators.required],
+    password: ['', Validators.minLength(4)]
+  })
 
   constructor(
-    private router: Router,
-  ) { }
+    private fb: FormBuilder,
+    // private loginService: LoginService,
+    private router: Router
+    ) { }
 
+ 
+loginData: any;
+
+submitLogin() {
+  this.submitted = true;
+  console.log(this.loginForm.controls, "controls")
+  // stop here if form is invalid
+  if (this.loginForm.invalid) {
+    console.log('unauthorized')
+      return;
+  }
+
+  // this.loginService.saveLoginData(this.loginForm.value)
+  // this.loginService.getLogin();
+  console.log(this.loginForm.value, 'submiteed!!!!!');
+  this.router.navigate(['homepage'])
+
+}
   ngOnInit(): void {
   }
 

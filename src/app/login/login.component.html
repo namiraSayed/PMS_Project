@@ -1,31 +1,76 @@
 <nb-layout>
-  <nb-layout-column >
-    <nb-card  class="login-form">
-      <nb-card-body>
-    <div >
-        <form (ngSubmit)="savelogin()" #form="ngForm" aria-labelledby="title" >
+  <nb-layout-column>
+    <div class="login-form d-flex justify-content-center">
+      <nb-card class="">
+        <nb-card-header>Sign In</nb-card-header>
+        <nb-card-body>
+          <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+
 
             <div class="form-control-group">
-              <label class="label" for="input-email">Email address:</label>
-              <input nbInput fullWidth [(ngModel)]="user.email"  name="email" id="input-email"
-                pattern=".+@.+\..+" placeholder="Email address" autofocus >
+              <!-- username    -->
+              <label for="userId" class="visually-hidden">User NAme</label>
+              <input nbInput fullWidth type="text" id="userId" formControlName="userId" placeholder="User Name"
+                class="form-control mb-2" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.userId.errors }" />
+              <div
+                *ngIf="loginForm.controls.userId.invalid && (loginForm.controls.userId.dirty || loginForm.controls.userId.touched)"
+                class="">
+                <nb-alert
+                  *ngIf="loginForm.controls.userId.invalid && (loginForm.controls.userId.dirty || loginForm.controls.userId.touched)"
+                  status="danger">
+                  <!-- User ID is required! -->
+                  <div *ngIf="loginForm.controls.userId.errors.required">
+                    User ID is required.
+                  </div>
+                </nb-alert>
+              </div>
+
             </div>
+
+
+
             <div class="form-control-group">
-              <label class="label" for="input-password">Password</label>
-              <input nbInput fullWidth [(ngModel)]="user.password"  name="password" type="password" id="input-password"
-                placeholder="password address" autofocus >
+              <!-- password  -->
+              <label for="password" class="visually-hidden">Password</label>
+              <input nbInput fullWidth type="password" id="password" class="form-control" formControlName="password"
+                placeholder="Password" required
+                [ngClass]="{ 'is-invalid': submitted && loginForm.controls.password.errors }">
+
+              <nb-alert
+                *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
+                status="danger">
+                <div *ngIf="loginForm.controls.password.errors.required">
+                  Password is required.
+                </div>
+                <div *ngIf="loginForm.controls.password.errors.minlength">
+                  Password must be at least 4 characters long.
+                </div>
+              </nb-alert>
             </div>
-           
-            <button nbButton
-                fullWidth
-                status="success"
-                
-            >
-          Sign In
-        </button>
+            <!-- <div
+              *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
+              class="alert alert-danger">
+
+              <div *ngIf="loginForm.controls.password.errors.required">
+                Password is required.
+              </div>
+              <div *ngIf="loginForm.controls.password.errors.minlength">
+                Password must be at least 4 characters long.
+              </div>
+            </div> -->
+
+            <div class="checkbox form-control-group">
+              <label>
+                <input type="checkbox" value="remember-me"> Remember me
+              </label>
+            </div>
+            <!-- <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button> -->
+            <button nbButton fullWidth status="success">
+              Sign In
+            </button>
           </form>
+        </nb-card-body>
+      </nb-card>
     </div>
-  </nb-card-body>
-</nb-card>
   </nb-layout-column>
 </nb-layout>
