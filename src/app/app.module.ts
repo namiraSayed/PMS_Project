@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router'; // we also need angular router f
 import { NbSidebarModule, NbLayoutModule, NbButtonModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +37,7 @@ import { GuestProfileComponent } from './guest-profile/guest-profile.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     NbThemeModule.forRoot(),
     RouterModule, // RouterModule.forRoot(routes, { useHash: true }), if this is your app.module

@@ -9,14 +9,42 @@
             Guest Profile
           </nb-accordion-item-header>
           <nb-accordion-item-body>
-            <form [formGroup]="guestProfile" (submit)="onSubmitGuest()">
+            <form [formGroup]="guestProfile" (submit)="onSubmitGuest(guestProfile)">
+              <div class="form-group row">
+                <label for="inputEmail1" class="label col-sm-1 col-form-label">Guest profile Id: </label>
+                <div class="col-sm-2">
+                  <input type="text" nbInput required  formControlName="guestProfileId" fullWidth placeholder="guestProfileId" [ngClass]="{ 'is-invalid': submitted && guestProfile.controls.guestProfileId.errors }">
+
+                  <div
+                *ngIf="guestProfile.controls.guestProfileId.invalid && (guestProfile.controls.guestProfileId.dirty || guestProfile.controls.guestProfileId.touched)"
+                class="">
+                  <!-- User ID is required! -->
+                  <div *ngIf="guestProfile.controls.guestProfileId.errors.required">
+                    User ID is required.
+                  </div>
+              
+              </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <input type="text" nbInput  formControlName="folioNo" fullWidth placeholder="folioNo">
+                </div>
+                
+                <div class="col-sm-3">
+                  <input type="text" nbInput fullWidth  formControlName="guestProfileSourceId" placeholder="guestProfileSourceId">
+                </div>
+                
+                <div class="col-sm-3">
+                  <input type="text" nbInput fullWidth  formControlName="contractProfileId" placeholder="contractProfileId">
+                </div>
+              </div>
               <div class="form-group row">
                 <label for="inputEmail1" class="label col-sm-1 col-form-label">Name: </label>
                 <div class="col-sm-2">
-                    <nb-select fullWidth placeholder="Select Salutation"  formControlName="Salutation" [(selected)]="selectedItem">
-                        <nb-option value="Mr.">Mr.</nb-option>
-                        <nb-option value="Ms.">Ms.</nb-option>
-                        <nb-option value="Mrs.">Mrs.</nb-option>
+                    <nb-select fullWidth placeholder="Select Salutation"  formControlName="titleId" [(selected)]="selectedItem">
+                        <nb-option value="201">Mr.</nb-option>
+                        <nb-option value="202">Ms.</nb-option>
+                        <nb-option value="203">Mrs.</nb-option>
                       </nb-select>
                 </div>
                 <div class="col-sm-3">
@@ -32,17 +60,17 @@
               <div class="form-group row">
                 <label for="inputEmail1" class="label col-sm-1 col-form-label">Id Type: </label>
                 <div class="col-sm-3">
-                    <nb-select fullWidth  formControlName="IdType" placeholder="Select Id Type" [(selected)]="selectedItem1">
+                    <nb-select fullWidth  formControlName="nationalIdType" placeholder="Select Id Type" [(selected)]="selectedItem1">
                         <nb-option value="Passport">Passport</nb-option>
                         <nb-option value="Pan Card">Pan Card</nb-option>
                         <nb-option value="Aadhar Card">Aadhar Card</nb-option>
                       </nb-select>
                 </div>
                 <div class="col-sm-4">
-                  <input type="text"  formControlName="IdNumber" nbInput fullWidth placeholder="Id Number">
+                  <input type="text"  formControlName="nationalId" nbInput fullWidth placeholder="Id Number">
                 </div>
                 <div class="col-sm-2">
-                  <input type="file"  formControlName="IdImage" (change)="onselect($event)" multiple>
+                  <input type="file"  formControlName="nationalIdImage" (change)="onselect($event)" multiple>
                   <div *ngIf="!display" class="display-image">
                     <!-- <img  *ngFor='let url of urls' [src]="url" height="100"> -->
                   </div>
@@ -83,7 +111,7 @@
               <div class="form-group row">
                 <label for="inputEmail1" class="label col-sm-1 col-form-label">Mobile No. : </label>
                 <div class="col-sm-5">
-                  <input type="text" formControlName="mobNo"  nbInput fullWidth placeholder="Mobile Number">
+                  <input type="text" formControlName="mobile"  nbInput fullWidth placeholder="Mobile Number">
                 </div>
                 <label for="inputEmail1" class="label col-sm-1 col-form-label">Nationality : </label>
                 <div class="col-sm-5">
@@ -95,11 +123,11 @@
               <div class="form-group row">
                 <label for="inputEmail1" class="label col-sm-1 col-form-label">Remark : </label>
                 <div class="col-sm-5">
-                  <input type="text" formControlName="remark" nbInput fullWidth placeholder="Remark">
+                  <input type="text" formControlName="remarks" nbInput fullWidth placeholder="Remark">
                 </div>
                 <label for="inputEmail1" class="label col-sm-1 col-form-label">Status : </label>
                 <div class="col-sm-5">
-                    <nb-toggle  formControlName="status" status="primary"></nb-toggle>
+                    <nb-toggle  formControlName="guestProfileStatus" status="primary"></nb-toggle>
                 </div>
               </div>
 

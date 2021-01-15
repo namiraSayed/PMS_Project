@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import { Component, OnInit, ViewChild, ɵConsole } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { GuestProfileService } from './guest-profile.service';
 
 @Component({
   selector: 'app-guest-profile',
@@ -9,46 +10,57 @@ import { FormBuilder, FormControl, FormGroup} from '@angular/forms';
 export class GuestProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
+    private guestProfileService: GuestProfileService
   ) { }
 
   guestProfile = this.fb.group({
-    Salutation: [''],
+    guestProfileId: ['', Validators.required],
+    folioNo:[''],
+    guestProfileSourceId:[''],
+    contractProfileId: [''],
+    titleId: [''],
     firstName: [''],
     middleName: [''],
     lastName: [''],
-    IdType: [''],
-    IdNumber: [''],
-    IdImage: [''],
+    gender: [''],
     dob: [''],
     age: [''],
-    gender: [''],
+    ageUnit: [''],
     civilStatus: [''],
-    mobNo: [''],
+    mobile: [''],
+    nationalIdType: [''],
+    nationalId: [''],
+    nationalIdImage: [''],
     nationality: [''],
-    remark: [''],
-    status: [''],
+    guestProfileStatus: [''],
+    remarks: [''],
   });
+
 
   onSubmitGuest() {
     console.log(this.guestProfile, "guestProfile");
+    
+    // this.guestProfileService.saveGuestProfile(this.guestProfile.value);
+    this.guestProfileService.saveGuest(this.guestProfile.value)
   }
 
 
-  urls=[];
-  onselect(e){
-    if(e.target.files){
-      for(let i=0;i<File.length;i++){
-         var reader= new FileReader();
-         reader.readAsDataURL(e.target.files[i]);
-         reader.onload=(events:any)=>{
-           this.urls.push(events.target.result);
-         }
-      }
-    }
-  }
+  // urls=[];
+  // onselect(e){
+  //   if(e.target.files){
+  //     for(let i=0;i<File.length;i++){
+  //        var reader= new FileReader();
+  //        reader.readAsDataURL(e.target.files[i]);
+  //        reader.onload=(events:any)=>{
+  //          this.urls.push(events.target.result);
+  //        }
+  //     }
+  //   }
+  // }
 
 
   ngOnInit(): void {
+    this.guestProfileService.checkService();
   }
 
 }
